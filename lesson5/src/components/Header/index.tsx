@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components'
-
+import logoImage from '../../assets/images/logo.png'
+import AutoComplete from "../Input/AutoComplete";
 
 
 const Header = () => {
@@ -8,7 +9,8 @@ const Header = () => {
         <Wrapper>
             <Container>
                 
-                
+            <Logo src={logoImage} alt="" />
+            <AutoComplete/>
 
             </Container>
         </Wrapper>
