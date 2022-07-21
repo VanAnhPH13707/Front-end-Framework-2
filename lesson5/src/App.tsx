@@ -11,6 +11,8 @@ import AdminLayout from './components/Layout/admin'
 import Signin from './pages/Auth/signin'
 import ProductAdminPage from './pages/Admin/Product'
 import ProductAdd from './pages/Admin/Product/add'
+import ProductEdit from './pages/Admin/Product/edit'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,6 +25,7 @@ function App() {
         <Route path='/admin' element={<AdminLayout />}>
           <Route index element={<ProductAdminPage />} />
           <Route path='product/add' element={<ProductAdd/>}/>
+          <Route path='product/edit' element={<ProductEdit/>}/>
         </Route>
       </Routes>
     </Container>

@@ -1,3 +1,44 @@
+// import { message } from 'antd';
+// import React, { useState } from 'react';
+// import { upload } from '../../../api/images';
+
+// const EditProduct: React.FC = () => {
+//   const [previewImage, setPreviewImage] = useState('')
+//   const [imageUrl, setImageUrl] = useState('')
+
+//   const handleChangeImage = (event: any) => {
+//     const file = event.target.files[0]
+//     console.log(file);
+    
+//     const reader = new FileReader()
+//     reader.readAsDataURL(file)
+//     reader.onloadend = () => {
+//       setPreviewImage(reader.result)
+//     }
+//   }
+
+//   const uploadImage = async (base64Image: string) => {
+//     try {
+//       const res = await upload(base64Image)
+//       const data = res.data
+//       setImageUrl(data.url)
+//     } catch(err) {
+//       console.log(err);
+//       message.error(JSON.stringify(err.message))
+//     }
+//   }
+//   return (
+//     <>
+//       <h1>Cập nhật sản phẩm</h1>
+//       <input onChange={handleChangeImage} type="file" accept='image/png, image/jpg, image/jpeg ' />
+//       <button onClick={() => uploadImage(previewImage)}>Upload image</button>
+//       {imageUrl && <img src={imageUrl} alt="" />}
+//     </>
+//   );
+// };
+
+// export default EditProduct;
+
 import React from "react";
 import styled from "styled-components";
 import { Typography, Col, Row, Button, Checkbox, Form, Input, InputNumber, Select, message } from 'antd'
@@ -9,7 +50,7 @@ import { useNavigate } from "react-router-dom";
 const { TextArea } = Input
 const { Option } = Select;
 
-const ProductAdd: React.FC = () => {
+const ProductEdit: React.FC = () => {
 	const navigate = useNavigate()
 	const onFinish = async (values: any) => {
 		console.log('Success:', values);
@@ -30,7 +71,7 @@ const ProductAdd: React.FC = () => {
 		<>
 			<Breadcrumb>
 				<Typography.Title level={2} style={{ margin: 0 }}>
-					Thêm mới
+					Cập nhật
 				</Typography.Title>
 			</Breadcrumb>
 			<Row gutter={16}>
@@ -115,7 +156,7 @@ const ProductAdd: React.FC = () => {
 
 						<Form.Item >
 							<Button type="primary" htmlType="submit">
-								Tạo mới sản phẩm
+								Cập nhật sản phẩm
 							</Button>
 						</Form.Item>
 					</Form>
@@ -135,4 +176,4 @@ const Label = styled.div`
 	font-size: 13px;
 `
 
-export default ProductAdd
+export default ProductEdit

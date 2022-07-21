@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import { Typography, Button, Table , Switch, Space} from 'antd';
+import { Typography, Button, Table , Switch, Space,Image} from 'antd';
 import { Link } from 'react-router-dom'
-import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { SearchOutlined, PlusOutlined, FormOutlined } from '@ant-design/icons';
 const { Paragraph } = Typography
 import type { ColumnsType } from 'antd/es/table';
 import { list } from "../../../api/product";
@@ -12,9 +12,18 @@ interface DataType {
     saleOffPrice: number;
     feature: string;
     description: string;
+    image: string;
 }
 
 const columns: ColumnsType<DataType> = [
+    {
+        title: "Ảnh",
+        dataIndex: 'image',
+        key: "image",
+        render: (dataIndex) => (
+          <Image src={dataIndex}/>
+        ),
+      },
     {
         title: 'Tên sản phẩm',
         dataIndex: 'name',
@@ -52,8 +61,8 @@ const columns: ColumnsType<DataType> = [
         render: (_, record) => (
           <Space size="middle">
             <IconsItems>
-              <EditOutlined />
-              <DeleteOutlined />
+            <Link to ="/admin/product/edit"><FormOutlined /></Link>
+              
             </IconsItems>
           </Space>
         ),
@@ -78,7 +87,9 @@ const ProductAdminPage = () => {
         }
         
         fetchData()
+  
     }, [])
+
     return (
         <>
             <Breadcrumb>
