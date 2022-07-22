@@ -42,21 +42,25 @@
       "id": 5
     },
     {
-      "name": "dhrthdt",
-      "originalPrice": 123567,
-      "saleOffPrice": 1323,
+      "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658415972/anhhtus/chaisutenmgwmqbg7vkh.png",
+      "shortDesc": "dfgbfg",
+      "name": "bình minh",
+      "originalPrice": 1234565768,
+      "saleOffPrice": 132,
       "categories": "phone",
-      "feature": "xcxvbc",
-      "description": "vxcvc",
+      "feature": "fdvfb",
+      "description": "gfbghn",
       "id": 6
     },
     {
-      "name": "Đầm xanh đen đuôi cá",
-      "originalPrice": 2222,
-      "saleOffPrice": 55555,
-      "categories": "phone",
-      "feature": "dsafdv",
-      "description": "vdfv",
+      "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658418179/anhhtus/xibm7fm0fepa6e2g6s8j.jpg",
+      "shortDesc": "nm,m,",
+      "name": "product A",
+      "originalPrice": 56700,
+      "saleOffPrice": 123,
+      "categories": "tablet",
+      "feature": "asdfhh,kjl",
+      "description": " nbm,nm,",
       "id": 7
     }
   ]

@@ -8,6 +8,7 @@ import type { ColumnsType } from 'antd/es/table';
 import { list } from "../../../api/product";
 
 interface DataType {
+    id:number;
     name: string;
     saleOffPrice: number;
     feature: string;
@@ -18,11 +19,9 @@ interface DataType {
 const columns: ColumnsType<DataType> = [
     {
         title: "Ảnh",
-        dataIndex: 'image',
+        dataIndex: "image",
         key: "image",
-        render: (dataIndex) => (
-          <Image src={dataIndex}/>
-        ),
+        render: (dataIndex) => <Image src={dataIndex} style={{ width: "50px" }} />,
       },
     {
         title: 'Tên sản phẩm',
@@ -58,10 +57,11 @@ const columns: ColumnsType<DataType> = [
       {
         title: "Action",
         key: "action",
-        render: (_, record) => (
+        dataIndex: 'id',
+        render: (dataIndex) => (
           <Space size="middle">
             <IconsItems>
-            <Link to ="/admin/product/edit"><FormOutlined /></Link>
+            <Link to ={`/admin/product/edit/${dataIndex}`}><FormOutlined /></Link>
               
             </IconsItems>
           </Space>

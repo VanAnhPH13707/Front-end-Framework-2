@@ -23,6 +23,7 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
     max-width: 1000px;
+    height: 64px;
     margin: 0 auto;
     display: flex;
     align-items: center;

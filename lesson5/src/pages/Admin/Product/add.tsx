@@ -4,50 +4,108 @@ import { Typography, Col, Row, Button, Checkbox, Form, Input, InputNumber, Selec
 import UploadImage from "../../../components/Product/UploadImage";
 import { add } from "../../../api/product";
 import { useNavigate } from "react-router-dom";
+import { upload } from "../../../api/images";
+import { PlusCircleOutlined } from "@ant-design/icons";
 
 
 const { TextArea } = Input
 const { Option } = Select;
 
 const ProductAdd: React.FC = () => {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
+	const [base64Image, setBase64Image] = React.useState("");
+	const [uploadedImage, setUploadedImage] = React.useState("");
+
+	const handleChangeImage = (event: any) => {
+		const file = event.target.files[0];
+		// previewFile(file)
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onloadend = () => {
+			uploadImage(reader.result as string);
+		};
+	};
+
+	const uploadImage = async (base64Image: string) => {
+		try {
+			const res = await upload(base64Image);
+			const data = res.data;
+			console.log(data);
+			setUploadedImage(data.url);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 	const onFinish = async (values: any) => {
-		console.log('Success:', values);
+		if (values.image == undefined) {
+			values.image = ""
+		} else {
+			values.image = uploadedImage
+		}
+		console.log("Success:", values);
 
 		try {
-			const data = await add(values)
-			message.success("Tạo mới thành công")
-			navigate(-1)
+			const data = await add(values);
+			message.success("Tạo mới thành công");
+			navigate(-1);
 		} catch (err) {
-			message.error("Có lỗi xảy ra")
+			message.error("Có lỗi xảy ra");
 		}
 	};
 
 	const onFinishFailed = (errorInfo: any) => {
-		console.log('Failed:', errorInfo);
+		console.log("Failed:", errorInfo);
 	};
+	console.log(uploadedImage);
 	return (
 		<>
-			<Breadcrumb>
-				<Typography.Title level={2} style={{ margin: 0 }}>
-					Thêm mới
-				</Typography.Title>
-			</Breadcrumb>
-			<Row gutter={16}>
-				<Col span={10}>
-					<UploadImage />
-					
-				</Col>
-				<Col span={14}>
-					<Typography.Title level={5}>Thông tin sản phẩm</Typography.Title>
-					<Form
-						// name="product"
-						initialValues={{}}
-						onFinish={onFinish}
-						onFinishFailed={onFinishFailed}
-						autoComplete="on"
-						labelCol={{ span: 24 }}
-					>
+			<Form
+				// name="product"
+				initialValues={{}}
+				onFinish={onFinish}
+				onFinishFailed={onFinishFailed}
+				autoComplete="on"
+				labelCol={{ span: 24 }}
+			>
+				<Breadcrumb>
+					<Typography.Title level={2} style={{ margin: 0 }}>
+						Thêm mới
+					</Typography.Title>
+				</Breadcrumb>
+				<Row gutter={16}>
+					<Col span={10}>
+						<Container>
+							<Form.Item name="image">
+								<UploadWrapper>
+									{uploadedImage ? (
+										<ImagePreview style={{}} src={uploadedImage} alt="Image" />
+									) : (
+										<UploadIcon>
+											<PlusCircleOutlined style={{ fontSize: 30 }} />
+											<input
+												style={{ display: "none" }}
+												type="file"
+												accept="image/png, image/jpg, image/jpeg, image/gif"
+												name="image"
+												onChange={handleChangeImage}
+											/>
+										</UploadIcon>
+									)}
+								</UploadWrapper>
+							</Form.Item>
+							<Form.Item
+								name="shortDesc"
+								labelCol={{ span: 24 }}
+								label="Mô tả ngắn"
+								rules={[{ required: true, message: "Mô tả ngắn" }]}
+							>
+								<TextArea name="shortDesc" />
+							</Form.Item>
+						</Container>
+					</Col>
+					<Col span={14}>
+						<Typography.Title level={5}>Thông tin sản phẩm</Typography.Title>
+
 						<Form.Item
 							name="name"
 							labelCol={{ span: 24 }}
@@ -118,9 +176,10 @@ const ProductAdd: React.FC = () => {
 								Tạo mới sản phẩm
 							</Button>
 						</Form.Item>
-					</Form>
-				</Col>
-			</Row>
+					</Col>
+				</Row>
+			</Form>
+
 		</>
 	)
 }
@@ -134,5 +193,32 @@ const Breadcrumb = styled.div`
 const Label = styled.div`
 	font-size: 13px;
 `
+const Container = styled.div`
+    
+`
 
+const Label2 = styled.div`
+    font-weight: bold;
+    font-size: 13px;
+    text-align: left;
+`
+
+const UploadWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    border: 1px dashed gray;
+`
+
+const UploadIcon = styled.label`
+    input {
+        display: none;
+    }
+`
+
+const ImagePreview = styled.img`
+    width: 100%;
+`
 export default ProductAdd
