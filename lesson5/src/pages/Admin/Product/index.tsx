@@ -59,6 +59,8 @@ const columns: ColumnsType<DataType> = [
         key: "action",
         dataIndex: 'id',
         render: (dataIndex) => (
+            
+            
           <Space size="middle">
             <IconsItems>
             <Link to ={`/admin/product/edit/${dataIndex}`}><FormOutlined /></Link>
