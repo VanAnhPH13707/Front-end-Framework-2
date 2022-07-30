@@ -7,7 +7,7 @@ const UserLayout = (props: any) => {
     return (
         <>
             <Header/>
-            {/* <Outlet/> */}
+            <Outlet/>
         </>
     )
 }
