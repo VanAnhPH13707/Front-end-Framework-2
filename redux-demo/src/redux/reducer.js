@@ -6,15 +6,13 @@ const intialValue = {
 const rootReducer = (state = intialValue, action) => {
     switch(action.type) {
         case "cart/add":
-            const newCart = [...state.cart, action.payload]
             return {
-                ...state,
-                cart: newCart,
-                total: newCart.reduce((accu, item) => accu + item.saleOffPrice, 0)
-            };
+				...state,
+				cart: [...state.cart, action.payload],
+			};
         case "cart/increase":
             const id = action.payload
-            const newCarts = state.cart.map(item =>{
+            const newCart = state.cart.map(item =>{
                 if(item.id === id){
                     const amount = item.amount ? item.amount +1:2;
                     return {
@@ -24,6 +22,10 @@ const rootReducer = (state = intialValue, action) => {
                     }
                 }
             })
+            return {
+				...state,
+				cart: newCart
+			}
         default: 
             return state
     }

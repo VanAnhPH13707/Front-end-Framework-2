@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import Product from './components/product'
-import Cart from './components/cart'
+import Cart from './components/Cart/cart'
 
 function App() {
   const [products, setProducts] = useState([])
