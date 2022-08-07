@@ -1,5 +1,5 @@
 {
-  "users": [],
+  "users":[],
   "category": [
     {
       "id": 1,
@@ -128,6 +128,17 @@
       "shortDesc": "Thu cũ đổi mới - Trợ giá đến 300.000đ",
       "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659836499/anhhtus/hs1mpjsws7ybbtftiakz.png",
       "categories": 1
+    },
+    {
+      "id": 11,
+      "name": "product B",
+      "originalPrice": 12356000,
+      "saleOffPrice": 12000000,
+      "feature": "Camera chất lượng, bắt trọn từng khoảng khắc - Cụm 4 camera với cảm biến chính lên đến 108 MP",
+      "description": "Điện thoại cao cấp nhất dòng Galaxy A series sở hữu nhiều nâng cấp đáng giá so với thế hệ trước, từ ngoại hình cho đến hiệu năng, đặc biệt là hệ thống camera. Sau đây là những đánh giá chi tiết về chiếc",
+      "shortDesc": "Thu cũ lên đời - Trợ giá 1 triệu",
+      "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659893561/anhhtus/e7egtt3in9izgcchnptx.png",
+      "categories": 2
     }
   ]
 }

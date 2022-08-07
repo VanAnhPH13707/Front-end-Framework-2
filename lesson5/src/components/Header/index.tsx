@@ -50,7 +50,7 @@ const Logo = styled.img`
 `
 const Services = styled.div`
     display: flex;
-    margin-left: 48px;
+    margin-left: 54px;
 `
 
 const Service = styled.div`

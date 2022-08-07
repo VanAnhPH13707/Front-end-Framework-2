@@ -1,120 +1,274 @@
+// import { ShoppingCartOutlined } from "@ant-design/icons";
+// import { Button, Col, Row } from "antd";
+// import { Content } from "antd/lib/layout/layout";
+// import React, { useEffect, useState } from "react";
+// import { useParams } from "react-router-dom";
+// import styled from "styled-components";
+// import { read } from "../../api/product";
+// import Image1 from "../../assets/images/anh1.png";
+// import { ProductType } from "../../types/product";
+
+// type Props = {
+//   data: ProductType[];
+// };
+
+// const ProductDetail = (props: Props) => {
+//   const { id } = useParams();
+//   const [data, setData] = useState<ProductType[]>([]);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const { data } = await read(id);
+//       setData(data);
+//     };
+//     fetchData();
+//   }, []);
+//   return (
+//     <>
+//       <Content>
+//         <Row style={{ height: '35px', padding: '5px 250px' }}>
+//           <h2>{data.name}</h2>
+//         </Row>
+//         <hr />
+//         <Row style={{ justifyContent: "center" }}>
+//           <Col span={8}>
+//             <ProImage src={data.image} alt="" />
+//           </Col>
+//           <Col span={8} style={{ textAlign: 'left', paddingTop: '20px' }}>
+//             <Row style={{ display: 'flex' }}>
+//               <p style={{ fontSize: '20px', color: '#D70018', fontWeight: 'bold' }}>{data.saleOffPrice}đ</p>
+//               <p style={{ paddingTop: '6px', paddingLeft: '30px', fontSize: '16px' }}>{data.originalPrice}đ</p>
+//             </Row>
+//             <Row>
+//               <p>{data.shortDesc}</p>
+//             </Row>
+//             <Row style={{ paddingTop: '200px' }}>
+//               <Button style={{ width: '200px', background: '#FF3945', border: '#FF3945', color: '#fff' }}>Mua ngay</Button>
+//               <ShoppingCartOutlined style={{ width: '40px', border: '1px solid #FF3945', paddingTop: '10px', color: '#FF3945', borderRadius: "5px", marginLeft: '20px', marginRight: '20px' }} />
+//               <p>Thêm vào giỏ hàng</p>
+//             </Row>
+//           </Col>
+//         </Row>
+//         <div>
+//           <div>Sản phẩm cùng loại</div>
+
+//         </div>
+
+
+//         {/* đặc điểm nổi bật */}
+//         <div>
+//           <Items3>
+//             <NameDD>Đặc điểm nổi bật</NameDD>
+//             <div>
+//               <SpanN>
+//                 {data.feature}
+//               </SpanN>{" "}
+//               <br />
+//               <SpanN>
+//                 {data.shortDesc}
+//               </SpanN>{" "}
+//               <br />
+//               <SpanN>
+//                 {data.description}
+//               </SpanN>{" "}
+//               <br />
+//             </div>
+//           </Items3>
+//         </div>
+
+
+//       </Content>
+//     </>
+//   );
+// };
+// const ProImage = styled.img`
+//     width:280px;
+//     padding-top: 20px;
+//     padding-bottom: 20px;
+// `
+
+// const PriceC = styled.div`
+//   font-size: 12px;
+//   margin-left: 10px;
+// `;
+// const Items2 = styled.div`
+//   display: flex;
+//   margin-top: 200px;
+// `;
+// const CartItems = styled.div`
+//   display: flex;
+// `;
+// const Buutoon = styled.button`
+//   padding: 5px 30px;
+//   color: white;
+//   font-size: 14px;
+//   background-color: #ff3945;
+// `;
+// const Items3 = styled.div`
+//   background-color: #f2f2f2;
+//   margin-top: 30px;
+//   margin-bottom: 20px;
+//   padding: 10px 0;
+// `;
+// const NameDD = styled.div`
+//   text-align: center;
+//   color: red;
+//   font-size: 18px;
+// `;
+// const SpanN = styled.span`
+//   padding-left: 20px;
+//   font-size: 14px;
+//   padding-bottom: 10px;
+//   padding-top: 10px;
+// `;
+// export default ProductDetail;
+
+
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import React from "react";
+import { Button, Col, message, Row } from "antd";
+import { Content } from "antd/lib/layout/layout";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
-import Image1 from "../../assets/images/anh1.png";
+import { getProInCate } from "../../api/category";
+import { read } from "../../api/product";
+import Procss from './product.module.css'
+import starImage from "../../assets/images/Star.png"
+import { ProductType } from "../../types/product";
+import s from "./ProductDetail.module.css";
 
 type Props = {};
 
 const ProductDetail = (props: Props) => {
+  const [product, setProduct] = useState<any>([]);
+  const { id } = useParams();
+  const [data, setData] = useState<ProductType[]>([]);
+  useEffect(() => {
+    const getProduct = async () => {
+      const { data } = await read(id);
+      setProduct(data);
+    };
+    getProduct();
+  }, [id]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await getProInCate(product.category);
+      if (data.products.length > 4) {
+        const newData = data.products.filter((item: any) => item.status == 0);
+        const samePro = [];
+        for (let i = 0; i < 5; i++) {
+          samePro.push(newData[i]);
+        }
+        setData(samePro);
+      } else {
+        setData(data.products);
+      }
+    };
+    fetchData();
+  }, [product]);
+  const dispatch = useDispatch();
+  const addToCart = (item: any) => {
+    dispatch({
+      type: "cart/add",
+      payload: { ...item, amount: 1 },
+    });
+    message.success("Thêm vào giỏ hàng thành công!");
+  };
   return (
-    <Container>
-      <div>
-        {/* tên */}
-        <div>Samsung Galaxy A73 (5G) 256GB</div>
-      </div>
-      <Items1>
-        {/* Product img  */}
-        <div>
-          <div>
-            <Img1 src={Image1} />
-          </div>
-        </div>
-        {/* price  */}
-        <div>
-          <Pricee>
-            <PriceColor>11.690.000 ₫</PriceColor>
-            <PriceC>12.990.000 ₫</PriceC>
-          </Pricee>
-          <div>
-            Mô tả ngắn: Trước khi mua bất kỳ chiếc điện thoại nào, người dùng
-            cũng sẽ quan tâm đến thiết kế sản phẩm trước. Với phiên bản A73,
-            Samsung đã tạo nên một chiếc smartphone với vẻ ngoài mang đến cảm
-            giác sang trọng và tinh tế.
-          </div>
-          <Items2>
-            <div>
-              <Buutoon>Mua Hàng</Buutoon>
-            </div>
-
-            <CartItems>
+    <Content>
+      <Row style={{ height: '35px', padding: '5px 250px' }}>
+        <h2>{product.name}</h2>
+      </Row>
+      <hr />
+      <Row style={{ justifyContent: "center" }}>
+        <Col span={8}>
+          <ProImage src={product.image} alt="" />
+        </Col>
+        <Col span={8} style={{ textAlign: 'left', paddingTop: '20px' }}>
+          <Row style={{ display: 'flex' }}>
+            <p style={{ fontSize: '20px', color: '#D70018', fontWeight: 'bold' }}>{product.saleOffPrice}đ</p>
+            <p style={{ paddingTop: '6px', paddingLeft: '30px', fontSize: '16px' }}>{product.originalPrice}đ</p>
+          </Row>
+          <Row>
+            <p>{product.shortDesc}</p>
+          </Row>
+          <Row style={{ paddingTop: '200px' }} onClick={() => addToCart(product)}>
+            <Button style={{ width: '200px', background: '#FF3945', border: '#FF3945', color: '#fff' }}>Mua ngay</Button>
+            <ShoppingCartOutlined style={{ width: '40px', border: '1px solid #FF3945', paddingTop: '10px', color: '#FF3945', borderRadius: "5px", marginLeft: '20px', marginRight: '20px' }} />
+            <p>Thêm vào giỏ hàng</p>
+          </Row>
+        </Col>
+      </Row>
+      <Row style={{ padding: '20px 240px', justifyContent: 'space-between' }}>
+        <h3>Sản phẩm cùng loại</h3>
+      </Row>
+      <Row>
+        {data &&
+          data.map((item: any, index: any) => {
+            return (
               <div>
-                <ShoppingCartOutlined style={{ width: "50px" }} />
-              </div>
-              <div>Thêm vào giỏ hàng</div>
-            </CartItems>
-          </Items2>
-        </div>
-      </Items1>
+                <Col span={4} >
+                  <NavLink to={`/product/detail/${item.id}`}>
+                    <Box className={Procss.box}>
+                      <ProImage src={item.image} alt="" />
+                      <Name>
+                        <h3>{item.name}</h3>
+                      </Name>
+                      <Price>
+                        <span style={style}>{item.originalPrice}đ</span>
+                        <span>{item.saleOffPrice}đ</span>
+                      </Price>
+                      <Text>
+                        <p>{item.shortDesc}</p>
+                      </Text>
+                      <List>
+                        <Star src={starImage} />
+                        <Star src={starImage} />
+                        <Star src={starImage} />
+                        <Star src={starImage} />
+                        <Star src={starImage} />
+                      </List>
 
+
+                    </Box>
+                  </NavLink>
+                </Col>
+              </div>
+            );
+          })}
+      </Row>
       {/* đặc điểm nổi bật */}
-      <div>
+      <Row style={{width:'1250px',paddingLeft:'240px'}}>
         <Items3>
           <NameDD>Đặc điểm nổi bật</NameDD>
           <div>
-            <SpanN>
-              Camera chất lượng, bắt trọn từng khoảng khắc - Cụm 4 camera với
-              cảm biến chính lên đến 108 MP
-            </SpanN>{" "}
-            <br />
-            <SpanN>
-              Thưởng thức không gian giải trí cực đỉnh - Màn hình lớn 6.7 inch,
-              độ phân giải Full HD+, 120Hz mượt mà
-            </SpanN>{" "}
-            <br />
-            <SpanN>
-              Cấu hình Galaxy A73 5G được nâng cấp mạnh với chip Snapdragon
-              778G, RAM lên đến 8 GB
-            </SpanN>{" "}
-            <br />
-            <SpanN>
-              Chiến game thoải mái không lo gián đoạn - Viên pin lớn 5000 mAh,
-              hỗ trợ sạc nhanh 25 W
-            </SpanN>{" "}
-            <br />
+            <SpanN>{product.feature}</SpanN>
           </div>
         </Items3>
-      </div>
+      </Row>
       {/* docs */}
-      <div>
-        Năm 2022 hứa hẹn sẽ là một năm rất đáng trông đợi đối với những ai là
-        fan của thương hiệu điện thoại Samsung. Mới đây, hãng sẽ tiếp tục cho ra
-        mắt nhiều smartphone với sự cải tiến trong thiết kế và cấu hình, trong
-        đó phải kể đến chiếc Samsung Galaxy A73 với nhiều cải tiến so với thế hệ
-        trước. Vậy sản phẩm có gì nổi bật, giá bao nhiêu và liệu có nên mua
-        không? Tìm hiểu ngay nhé!
+      <Row style={{width:'1250px',paddingLeft:'240px', paddingBottom:'20px'}}>
+      {product.description}
+      </Row>
+
+      <div className={s.butoonT}>
+        <InButton>Xem Thêm</InButton>
       </div>
-      <div >
-        <span>
-          Đánh giá Samsung A73 - Hiệu năng mượt mà, chụp ảnh chuyên nghiệp
-        </span>
-        <div>
-          Điện thoại cao cấp nhất dòng Galaxy A series sở hữu nhiều nâng cấp
-          đáng giá so với thế hệ trước, từ ngoại hình cho đến hiệu năng, đặc
-          biệt là hệ thống camera. Sau đây là những đánh giá chi tiết về chiếc
-        </div>
-      </div>
-      <div >
-        <span>Thiết kế sang trọng, màn hình Super AMOLED</span>
-        <p>
-          Trước khi mua bất kỳ chiếc điện thoại nào, người dùng cũng sẽ quan tâm
-          đến thiết kế sản phẩm trước. Với phiên bản A73, Samsung đã tạo nên một
-          chiếc smartphone với vẻ ngoài mang đến cảm giác sang trọng và tinh tế.
-          Samsung Galaxy A73 được thiết kế gọn nhẹ với tiêu chí đáp ứng khả năng
-          mang theo để tiện đi lại cho người dùng. Giờ đây, bạn có thể mang theo
-          chiếc smartphone bên cạnh đến bất cứ đâu, bất cứ lúc nào.Kích thước và
-          trọng lượng của chiếc điện thoại rất vừa phải và dĩ nhiên sẽ không
-          chiếm quá nhiều diện tích trong túi xách và có thể di chuyển dễ dàng.
-        </p>
-      </div>
-    </Container>
+
+    </Content>
   );
 };
-const Container = styled.div`
-  max-width: 1000px;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 50px;
-`;
+// const Container = styled.div`
+//   max-width: 1000px;
+//   margin: auto;
+//   margin-top: 20px;
+//   margin-bottom: 50px;
+// `;
+const ProImage = styled.img`
+   width:280px;
+   padding-top: 20px;
+   padding-bottom: 20px;
+`
 const Items1 = styled.div`
   width: 1000px;
   display: grid;
@@ -126,36 +280,46 @@ const Img1 = styled.img`
   width: 350px;
   height: 350px;
 `;
-const Coll1 = styled.div`
-  display: flex;
-  /* padding-right: 15px; */
-`;
-const Pricee = styled.div`
-  display: flex;
-  margin-bottom: 10px;
-`;
-const PriceColor = styled.div`
-  color: red;
-  font-size: 16px;
-`;
-const PriceC = styled.div`
+const Box = styled.div`
+  width: 220px;
+  transition: box-shadow .3s;
+  background: #fff;
+  float: left;
+  margin-left:5px;
+  margin-bottom:10px;
+`
+const Name = styled.h3`
   font-size: 12px;
-  margin-left: 10px;
-`;
-const Items2 = styled.div`
+  padding: 8px;
+  
+`
+const Price = styled.span`
   display: flex;
-  margin-top: 200px;
-`;
-const CartItems = styled.div`
-  display: flex;
-`;
-const Buutoon = styled.button`
-  padding: 5px 30px;
-  color: white;
-  font-size: 14px;
-  background-color: #ff3945;
-`;
+  justify-content:space-around;
+  color: #000;
+`
+const style = {
+  color: '#D70018',
+};
+const Text = styled.div`
+  width: 200px;
+  color: #000;
+  background: #F3F4F6;
+  border: 1px solid #E5E7EB;
+  border-radius: 5px;
+  margin: 15px 8px 15px;
+  
+`
+const List = styled.div`
+  display:flex;
+  padding-left: 10px;
+  padding-bottom:15px;
+`
+const Star = styled.img`
+  
+`
 const Items3 = styled.div`
+  width: 1200px;
   background-color: #f2f2f2;
   margin-top: 30px;
   margin-bottom: 20px;
@@ -166,10 +330,15 @@ const NameDD = styled.div`
   color: red;
   font-size: 18px;
 `;
-const SpanN = styled.span`
+const SpanN = styled.p`
   padding-left: 20px;
   font-size: 14px;
-  padding-bottom: 10px;
-  padding-top: 10px;
+ 
+`;
+const InButton = styled.button`
+  border: 1px solid #000000;
+  padding: 2px 60px;
+  box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.1);
+  border-radius: 10px;
 `;
 export default ProductDetail;

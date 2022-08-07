@@ -22,3 +22,7 @@ export const readCate = (id: number ) => {
     const url = `/category/${id}`;
     return instance.get(url);
 }
+export const getProInCate = (id:number) => {
+    const url = `/categoryDetail/${id}`
+    return instance.get(url)
+}

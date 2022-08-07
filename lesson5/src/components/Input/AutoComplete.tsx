@@ -1,18 +1,28 @@
 import { UserOutlined } from '@ant-design/icons';
 import { AutoComplete as AutoCompleteAnt, Input } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import s from "../Input/AutoComplete.module.css";
 import { SearchOutlined } from "@ant-design/icons";
+import { listCate } from '../../api/category';
+import { ProductType } from '../../types/product';
   
-  const options = [
-    { value: "Iphone" },
-    { value: "Oppo" },
-    { value: "Samsung" },
-    { value: "Xiaomi" },
-  ];
   
-  const AutoComplete: React.FC = () => (
+  const AutoComplete: React.FC = () => {
+    const [dataTable, setDataTable] = useState<ProductType[]>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await listCate();
+      setDataTable(data);
+    };
+    fetchData();
+  }, []);
+  const options = dataTable.map((item) => {
+    return {
+      value: item.name,
+    };
+  });
+  return (
     <div className={s.content_btn}>
     <AutoCompleteAnt
       dropdownClassName="certain-category-search-dropdown"
@@ -25,5 +35,6 @@ import { SearchOutlined } from "@ant-design/icons";
     </div>
     
   );
+  }
 
 export default AutoComplete

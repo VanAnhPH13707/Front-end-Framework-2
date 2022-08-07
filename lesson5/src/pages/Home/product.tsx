@@ -7,16 +7,7 @@ import { ProductType } from '../../types/product';
 import Procss from './product.module.css'
 import starImage from "../../assets/images/Star.png"
 import { NavLink } from 'react-router-dom';
-import Image1 from "../../assets/images/Rectangle (5).png"
-import Image2 from "../../assets/images/Rectangle (6).png"
-import Image3 from "../../assets/images/Rectangle (7).png"
-import Image4 from "../../assets/images/Rectangle (8).png"
-import Image5 from "../../assets/images/Rectangle (9).png"
-import Image6 from "../../assets/images/Rectangle (10).png"
-import Image7 from "../../assets/images/Rectangle (11).png"
-import Image8 from "../../assets/images/Rectangle (12).png"
-import Image9 from "../../assets/images/Rectangle (13).png"
-
+import Section from './section';
 
 type Props = {
   data: ProductType[];
@@ -72,7 +63,7 @@ const ProductPage = (props: Props) => {
               );
             })}
         </Row>
-        
+        <Section/>
       </Content>
     </>
   );
@@ -118,13 +109,6 @@ const List = styled.div`
   padding-bottom:15px;
 `
 const Star = styled.img`
-  
-`
-const Name1 = styled.p`
-    color: #fff;
-  
-`
-const Img1 = styled.img`
   
 `
 export default ProductPage;

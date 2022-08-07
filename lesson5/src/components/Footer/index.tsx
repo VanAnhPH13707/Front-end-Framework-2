@@ -129,6 +129,7 @@ const Footer = (props: Props) => {
 const ContainerrT = styled.div`
   width: 100%;
   margin: auto;
+  margin-top: 70px;
 `;
 const SpanClolor = styled.span`
   color: red;
@@ -177,7 +178,7 @@ const Coll = styled.div`
 const CollT = styled.div`
   text-align: left;
   font-size: 10px;
-  padding-top: 15px;
+  padding-top: 15px; 
 `;
 const SpanDocst = styled.span`
   font-size: 10px;

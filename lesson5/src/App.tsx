@@ -16,6 +16,9 @@ import CategoryAdd from './pages/Admin/Category/add'
 import CategoryEdit from './pages/Admin/Category/edit'
 import CategoryAdminPage from './pages/Admin/Category'
 import ProductDetail from './pages/Home/productDetail'
+import Signup from './pages/Auth/signup'
+import Cart from './pages/Home/Cart'
+
 
 
 function App() {
@@ -28,7 +31,9 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="/product/detail/:id" element={<ProductDetail />} />
         </Route>
-        <Route path='signin' element={<Signin />}></Route>
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path='/admin' element={<AdminLayout />}>
           <Route index element={<ProductAdminPage />} />
           <Route path='product/add' element={<ProductAdd />} />

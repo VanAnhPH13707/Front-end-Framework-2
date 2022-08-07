@@ -1,4 +1,4 @@
-import { ClockCircleOutlined, HomeOutlined, PhoneOutlined, LaptopOutlined, TabletFilled, AudioOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined, HomeOutlined, PhoneOutlined, LaptopOutlined, TabletFilled, AudioOutlined, } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import React from 'react';
@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 
 
   const item: MenuProps['items'] = [
-    { key: "cellphone", icon: <PhoneOutlined />, label: <Link to="/admin">Điện thoại</Link> },
+    { key: "cellphone", icon: <PhoneOutlined />, label: <Link to="/">Điện thoại</Link> },
     { key: "laptop", icon: <LaptopOutlined />, label: "Laptop" },
     { key: "tablet", icon: <TabletFilled />, label: "Máy tính bảng" },
     { key: "audio", icon: <AudioOutlined />, label: "Âm thanh" },
