@@ -1,30 +1,54 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import {Typography,Col,Row,Button,Checkbox,Form,Input,InputNumber,Select,message,Image
+import {
+  Typography,
+  Col,
+  Row,
+  Button,
+  Checkbox,
+  Form,
+  Input,
+  InputNumber,
+  Select,
+  message,
+  Image,
 } from "antd";
-import { useNavigate, useParams } from "react-router-dom";
-import {  read, update } from "../../../api/product";
+import { parsePath, useNavigate, useParams } from "react-router-dom";
 
 import { upload } from "../../../api/images";
 import { PlusCircleOutlined } from "@ant-design/icons";
+import { CategoryType } from "../../../types/category";
+import { read, update } from "../../../api/product";
+import { listCate } from "../../../api/category";
+
 
 const { TextArea } = Input;
 const { Option } = Select;
-
 const ProductEdit: React.FC = () => {
+
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [base64Image, setBase64Image] = React.useState("");
   const [uploadedImage, setUploadedImage] = React.useState("");
-  const {id} = useParams()
+  // categories
+  const [cate, setCate] = useState<CategoryType[]>([]);
+  useEffect(() => {
+    const getCate = async () => {
+      const { data } = await listCate();
+      setCate(data);
+    };
+    getCate();
+  }, []);
+  // console.log(cate);
+  // Products
+  const { id } = useParams();
   useEffect(() => {
     const getProduct = async () => {
       const { data } = await read(id);
       form.setFieldsValue(data);
-      console.log(data);
+      // console.log(data);
     };
     getProduct();
- 
   }, []);
   const handleChangeImage = (event: any) => {
     const file = event.target.files[0];
@@ -40,22 +64,37 @@ const ProductEdit: React.FC = () => {
     try {
       const res = await upload(base64Image);
       const data = res.data;
-      console.log(data);
+      // console.log(data);
       setUploadedImage(data.url);
     } catch (err) {
       console.log(err);
     }
   };
   const onFinish = async (values: any) => {
-    console.log("Success:", values);
-
+    const product = {
+      id: id,
+      name: values.name,
+      originalPrice: values.originalPrice,
+      saleOffPrice: values.saleOffPrice,
+      feature: values.feature,
+      description: values.description,
+      shortDesc: values.shortDesc,
+      image: values.image,
+      categories: values.categories
+    }
+    if (values.img) {
+      product.image = uploadedImage
+    }
+    // console.log("Success:", values);
     try {
-      const data = await update(values);
-      message.success("Cập nhật thành công");
+      const data = await update(product);
+      message.success("Sửa thành công");
       navigate(-1);
+
     } catch (err) {
       message.error("Có lỗi xảy ra");
     }
+
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -74,32 +113,33 @@ const ProductEdit: React.FC = () => {
       >
         <Breadcrumb>
           <Typography.Title level={2} style={{ margin: 0 }}>
-            Cập nhật
+            Chỉnh sửa
           </Typography.Title>
         </Breadcrumb>
         <Row gutter={16}>
           <Col span={10}>
-          <Form.Item valuePropName="src" name="image"
-            >
+            <Form.Item valuePropName="src" name="image">
               <Image />
             </Form.Item>
             <Container>
-              <UploadWrapper>
-                {uploadedImage ? (
-                  <ImagePreview style={{}} src={uploadedImage} alt="Image" />
-                ) : (
-                  <UploadIcon>
-                    <PlusCircleOutlined style={{ fontSize: 30 }} />
-                    <input
-                      style={{ display: "none" }}
-                      type="file"
-                      accept="image/png, image/jpg, image/jpeg, image/gif"
-                      name="image"
-                      onChange={handleChangeImage}
-                    />
-                  </UploadIcon>
-                )}
-              </UploadWrapper>
+              <Form.Item name="img">
+                <UploadWrapper>
+                  {uploadedImage ? (
+                    <ImagePreview style={{}} src={uploadedImage} alt="Image" />
+                  ) : (
+                    <UploadIcon>
+                      <PlusCircleOutlined style={{ fontSize: 30 }} />
+                      <input
+                        style={{ display: "none" }}
+                        type="file"
+                        accept="image/png, image/jpg, image/jpeg, image/gif"
+                        name="image"
+                        onChange={handleChangeImage}
+                      />
+                    </UploadIcon>
+                  )}
+                </UploadWrapper>
+              </Form.Item>
               <Form.Item
                 name="shortDesc"
                 labelCol={{ span: 24 }}
@@ -129,7 +169,12 @@ const ProductEdit: React.FC = () => {
                   name="originalPrice"
                   label="Giá gốc"
                   labelCol={{ span: 24 }}
-                  rules={[{ required: true, message: "Giá sản phẩm không được trống" }]}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Gía sản phẩm không được trống",
+                    },
+                  ]}
                 >
                   <InputNumber style={{ width: "100%" }} size="large" />
                 </Form.Item>
@@ -139,7 +184,12 @@ const ProductEdit: React.FC = () => {
                   name="saleOffPrice"
                   label="Giá giảm"
                   labelCol={{ span: 24 }}
-                  rules={[{ required: true, message: "Giá sản phẩm không được trống" }]}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Gía sản phẩm không được trống",
+                    },
+                  ]}
                 >
                   <InputNumber style={{ width: "100%" }} size="large" />
                 </Form.Item>
@@ -150,10 +200,15 @@ const ProductEdit: React.FC = () => {
                   name="categories"
                   rules={[{ required: true }]}
                 >
-                  <Select style={{ width: "100%" }} size="large">
-                    <Option value="phone">Điện thoại</Option>
-                    <Option value="laptop">Laptop</Option>
-                    <Option value="tablet">Máy tính bảng</Option>
+                  <Select
+                    style={{ width: "100%" }}
+                    size="large"
+                  >
+                    <option>Chon danh mục</option>
+                    {cate &&
+                      cate.map((item) => {
+                        return <option value={item.id}>{item.name}</option>;
+                      })}
                   </Select>
                 </Form.Item>
               </Col>
@@ -163,7 +218,12 @@ const ProductEdit: React.FC = () => {
               name="feature"
               labelCol={{ span: 24 }}
               label="Đặc điểm nổi bật"
-              rules={[{ required: true, message: "Đặc điểm sản phẩm không được bỏ trống" }]}
+              rules={[
+                {
+                  required: true,
+                  message: "Đặc điểm sản phẩm không được bỏ trống",
+                },
+              ]}
             >
               <TextArea name="feature" />
             </Form.Item>
@@ -171,14 +231,19 @@ const ProductEdit: React.FC = () => {
               name="description"
               labelCol={{ span: 24 }}
               label="Mô tả sản phẩm"
-              rules={[{ required: true, message: "Mô tả sản phẩm không được bỏ trống" }]}
+              rules={[
+                {
+                  required: true,
+                  message: "Mô tả sản phẩm không được bỏ trống",
+                },
+              ]}
             >
               <TextArea name="description" />
             </Form.Item>
 
             <Form.Item>
               <Button type="primary" htmlType="submit">
-                Cập nhật sản phẩm
+                Tạo mới sản phẩm
               </Button>
             </Form.Item>
           </Col>

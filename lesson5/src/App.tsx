@@ -13,6 +13,9 @@ import ProductAdd from './pages/Admin/Product/add'
 import ProductEdit from './pages/Admin/Product/edit'
 import HomePage from './pages/Home'
 import UserLayout from './components/Layout/user'
+import CategoryAdd from './pages/Admin/Category/add'
+import CategoryEdit from './pages/Admin/Category/edit'
+import CategoryAdminPage from './pages/Admin/Category'
 
 
 function App() {
@@ -29,6 +32,9 @@ function App() {
           <Route index element={<ProductAdminPage />} />
           <Route path='product/add' element={<ProductAdd />} />
           <Route path='product/edit/:id' element={<ProductEdit />} />
+          <Route path="category" element={<CategoryAdminPage />} />
+          <Route path="category/add" element={<CategoryAdd />} />
+          <Route path="category/edit/:id" element={<CategoryEdit />} />
         </Route>
       </Routes>
     </Container>

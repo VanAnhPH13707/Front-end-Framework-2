@@ -2,48 +2,93 @@ import { Col, Divider, Row } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import React from 'react';
 import styled from 'styled-components';
-import logoImage from '../../assets/images/logo.png'
-const style = {
-  background: '#0092ff',
-  padding: '8px 0',
-};
+import Anh1 from '../../assets/images/anh1.png';
+import Procss from './product.module.css'
+
 
 const ProductPage = () => (
   <>
-  <Content style={{ padding: '0 50px' }}>
-    <Divider orientation="left">Vertical</Divider>
-    <Row gutter={[16, 24]}>
-      <Col className="gutter-row" span={6}>
-        <Logo src = {logoImage} alt= ""/>
 
-      </Col>
-      <Col className="gutter-row" span={6}>
-        <div style={style}>col-6</div>
-      </Col>
-      <Col className="gutter-row" span={6}>
-        <div style={style}>col-6</div>
-      </Col>
-      <Col className="gutter-row" span={6}>
-        <div style={style}>col-6</div>
-      </Col>
-      <Col className="gutter-row" span={6}>
-        <div style={style}>col-6</div>
-      </Col>
-      <Col className="gutter-row" span={6}>
-        <div style={style}>col-6</div>
-      </Col>
-      <Col className="gutter-row" span={6}>
-        <div style={style}>col-6</div>
-      </Col>
-      <Col className="gutter-row" span={6}>
-        <div style={style}>col-6</div>
-      </Col>
-    </Row>
+    <Content style={{ padding: '50px 50px' }}>
+      <Row>
+      <h2>ĐIỆN THOẠI NỔI BẬT</h2>
+      </Row>
+      <Row>
+        <Col span={4} >
+          <Box className={Procss.box}>
+            <ProImage src={Anh1} alt="" />
+            <h3>Product </h3>
+          </Box>
+
+        </Col>
+        <Col span={4} >
+          <Box className={Procss.box}>
+            <ProImage src={Anh1} alt="" />
+            
+            <Price>
+              <span style={style}>1000000đ</span>
+              <span>100000đ</span>
+            </Price>
+            <Text>
+              <p>sdfghjk</p>
+            </Text>
+          </Box>
+        </Col>
+        <Col span={4} >
+          
+        </Col>
+        <Col span={4} >
+          <div style={style}>col-6</div>
+        </Col>
+        <Col span={4} >
+          <div style={style}>col-6</div>
+        </Col>
+        <Col span={4} >
+          <div style={style}>col-6</div>
+        </Col>
+        <Col span={4} >
+          <div style={style}>col-6</div>
+        </Col>
+
+        <Col span={4} />
+        <Col span={4} />
+        <Col span={4} />
+        <Col span={4} />
+        <Col span={4} />
+        <Col span={4} />
+        <Col span={4} />
+      </Row>
     </Content>
   </>
 );
-const Logo = styled.img`
-    
+const ProImage = styled.img`
+    width:180px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 `
+const Box = styled.div`
+  width: 220px;
+  transition: box-shadow .3s;
+  background: #fff;
+  float: left;
+`
+const Name = styled.h3`
 
+  
+`
+const Price = styled.span`
+  display: flex;
+  justify-content:space-around;
+`
+const style = {
+  color: '#D70018',
+};
+const Text = styled.div`
+  width: 200px;
+  background: #F3F4F6;
+  border: 1px solid #E5E7EB;
+  border-radius: 5px;
+  margin: 15px 8px 15px;
+  
+`
 export default ProductPage;

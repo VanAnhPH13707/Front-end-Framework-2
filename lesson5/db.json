@@ -1,5 +1,15 @@
 {
   "users": [],
+  "category": [
+    {
+      "name": "Category 1",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Category 2"
+    }
+  ],
   "products": [
     {
       "name": "Apple iPhone 13 Pro Max",
@@ -42,37 +52,59 @@
       "id": 5
     },
     {
-      "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658415972/anhhtus/chaisutenmgwmqbg7vkh.png",
-      "shortDesc": "dfgbfg",
+      "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659802507/anhhtus/q4k9glq6dkebnchne95d.png",
+      "shortDesc": "ghgh",
       "name": "bình minh",
-      "originalPrice": 1234565768,
-      "saleOffPrice": 132,
-      "categories": "phone",
-      "feature": "fdvfb",
-      "description": "gfbghn",
+      "originalPrice": 16890,
+      "saleOffPrice": 123,
+      "category": null,
+      "feature": "fgfbgf",
+      "description": "gbfgh",
       "id": 6
     },
     {
-      "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658418179/anhhtus/xibm7fm0fepa6e2g6s8j.jpg",
-      "shortDesc": "nm,m,",
-      "name": "product A",
-      "originalPrice": 56700,
-      "saleOffPrice": 123,
-      "categories": "tablet",
-      "feature": "asdfhh,kjl",
-      "description": " nbm,nm,",
+      "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659803752/anhhtus/oxt9vzdnepxojnlvyip2.png",
+      "shortDesc": "nhgm",
+      "name": "VÁY ĐẦM MAXI BCBG",
+      "originalPrice": 1235465,
+      "saleOffPrice": 546,
+      "category": null,
+      "feature": "fghg",
+      "description": "bnnb",
       "id": 7
     },
     {
-      "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658452233/anhhtus/pvgv5xldk8dvyqgke26k.png",
-      "shortDesc": "ghgh",
+      "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659804252/anhhtus/gdjcaneu7xfatupsfbvs.png",
+      "shortDesc": "ẻgge",
       "name": "dhrthdt",
-      "originalPrice": 1345,
-      "saleOffPrice": 45,
-      "categories": "phone",
-      "feature": "gfh",
-      "description": "bnhn",
+      "originalPrice": 232,
+      "saleOffPrice": 34,
+      "category": null,
+      "feature": "reg",
+      "description": "ẻg",
       "id": 8
+    },
+    {
+      "id": 9,
+      "name": "VÁY ĐẦM MAXI BCBG",
+      "originalPrice": 23432,
+      "saleOffPrice": 43,
+      "feature": "65yht",
+      "description": "reggt55",
+      "shortDesc": "43534",
+      "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659834119/anhhtus/i7tmnxz5esadnu1bigvb.png",
+      "categories": 2
+    },
+    {
+      "id": 10,
+      "name": "Đầm xanh đen đuôi cá",
+      "originalPrice": 12345689,
+      "saleOffPrice": 125,
+      "feature": "21rfeg",
+      "description": "vẻ243",
+      "shortDesc": "dg4",
+      "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659833670/anhhtus/bmoxynpbsjpgxmxjykes.png",
+      "categories": 1
     }
   ]
 }
