@@ -3,7 +3,6 @@ import logo from './logo.svg'
 import './App.css'
 import styled from 'styled-components'
 import { Route, Routes } from 'react-router-dom'
-import ProductDetail from './pages/Auth/signin'
 
 import AdminLayout from './components/Layout/admin'
 
@@ -16,6 +15,7 @@ import UserLayout from './components/Layout/user'
 import CategoryAdd from './pages/Admin/Category/add'
 import CategoryEdit from './pages/Admin/Category/edit'
 import CategoryAdminPage from './pages/Admin/Category'
+import ProductDetail from './pages/Home/productDetail'
 
 
 function App() {
@@ -26,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<UserLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="/product/detail/:id" element={<ProductDetail />} />
         </Route>
         <Route path='signin' element={<Signin />}></Route>
         <Route path='/admin' element={<AdminLayout />}>

@@ -1,9 +1,12 @@
 import React from "react";
 import styled from 'styled-components'
 import logoImage from '../../assets/images/logo.png'
+import ServiceBtn from "../Button/Service";
 import AutoComplete from "../Input/AutoComplete";
 
-
+import deliveryImage from "../../assets/images/delivery.png"
+import vectorImage from "../../assets/images/Vector.png"
+import cartImage from "../../assets/images/Cart.png"
 const Header = () => {
     return (
         <Wrapper>
@@ -11,6 +14,17 @@ const Header = () => {
                 
             <Logo src={logoImage} alt="" />
             <AutoComplete/>
+            <Services>
+                    <ServiceBtn
+                        image={vectorImage}
+                        title1="Gọi mua hàng 1800.2097"  />
+                    <ServiceBtn
+                        image={deliveryImage}
+                        title1="Cửa hàng gần bạn" />
+                    <ServiceBtn
+                        image={cartImage}
+                        title1="Giỏ hàng" />
+                </Services>
 
             </Container>
         </Wrapper>
@@ -33,13 +47,6 @@ const Logo = styled.img`
     width: 60px;
     height: auto;
     margin-right: 60px;
-`
-
-const Search = styled.input`
-    height: 36px;
-    border-radius: 10px;
-    border: none;
-    min-width: 500px;
 `
 const Services = styled.div`
     display: flex;

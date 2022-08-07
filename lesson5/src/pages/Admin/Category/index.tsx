@@ -124,6 +124,8 @@ const IconsItems = styled.div`
 `;
 const IconsItems2 = styled.button`
   color: #00b0d7;
+  border: none;
+  background-color:#fff;
 `;
 
 export default CategoryAdminPage;
