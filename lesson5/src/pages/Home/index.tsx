@@ -35,7 +35,7 @@ const HomePage = () => {
 				</Row>
 				
 			</Container>
-			<ProductPage></ProductPage>
+			<ProductPage/>
 			
 		</>
 	)

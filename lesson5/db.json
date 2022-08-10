@@ -1,10 +1,6 @@
 {
   "category": [
     {
-      "id": 1,
-      "name": "IPhone"
-    },
-    {
       "id": 2,
       "name": "Samsung"
     },
@@ -15,6 +11,10 @@
     {
       "name": "Oppo",
       "id": 4
+    },
+    {
+      "name": "IPhone",
+      "id": 5
     }
   ],
   "products": [
@@ -27,7 +27,7 @@
       "description": "[HOT] Thu cũ lên đời giá cao - Thủ tục nhanh - Trợ giá lên tới 1.000.000đ",
       "shortDesc": "[HOT] Thu cũ lên đời giá cao - Thủ tục nhanh - Trợ giá lên tới 1.000.000đ",
       "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659834983/anhhtus/va3gur5ny02epuelwluz.png",
-      "categories": 1
+      "categories": 5
     },
     {
       "id": 2,
@@ -38,7 +38,7 @@
       "description": "Cần có gói cước dữ liệu. Mạng 5G chỉ khả dụng ở một số thị trường và được cung cấp qua một số nhà mạng. Tốc độ có thể thay đổi tùy địa điểm và nhà mạng. Để biết thông tin về hỗ trợ mạng 5G, vui lòng liên hệ nhà mạng và truy cập apple.com/iphone/cellular.\n\n2Thời lượng pin khác nhau tùy theo cách sử dụng và cấu hình. Truy cập apple.com/batteries để biết thêm thông tin.\n\n",
       "shortDesc": "Thu cũ lên đời - Trợ giá 1 triệu",
       "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659835084/anhhtus/dildwacpqwdgfd35xkof.png",
-      "categories": 1
+      "categories": 5
     },
     {
       "id": 3,
@@ -49,7 +49,7 @@
       "description": "Cần có gói cước dữ liệu. Mạng 5G chỉ khả dụng ở một số thị trường và được cung cấp qua một số nhà mạng. Tốc độ có thể thay đổi tùy địa điểm và nhà mạng. Để biết thông tin về hỗ trợ mạng 5G, vui lòng liên hệ nhà mạng và truy cập apple.com/iphone/cellular.\n\n2Thời lượng pin khác nhau tùy theo cách sử dụng và cấu hình. Truy cập apple.com/batteries để biết thêm thông tin.\n\n",
       "shortDesc": "HOT] Thu cũ lên đời giá cao - Thủ tục nhanh - Trợ giá lên tới 1.000.000đ và",
       "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659835184/anhhtus/frpvxf2hjdqbblocb0vg.png",
-      "categories": 1
+      "categories": 5
     },
     {
       "id": 4,
@@ -93,7 +93,7 @@
       "description": "iPhone 12 đẩy nhanh mọi tác vụ với mạng 5G siêu nhanh.1 A14 Bionic, chip nhanh nhất trên điện thoại thông minh. Hệ thống camera kép mới. Với màn hình Super Retina XDR tuyệt đẹp, nay bạn có thể chiêm ngưỡng từng chi tiết hình ảnh vô cùng sống động.",
       "shortDesc": "[HOT] Thu cũ lên đời giá cao - Thủ tục nhanh - Trợ giá lên tới 1.000.000đ",
       "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659836069/anhhtus/fnbo1uqp4walk813bqkg.png",
-      "categories": 1
+      "categories": 5
     },
     {
       "id": 8,
@@ -107,30 +107,19 @@
       "categories": 4
     },
     {
-      "id": 9,
-      "name": "product A",
-      "originalPrice": 22265700,
-      "saleOffPrice": 17878000,
-      "feature": "Thu cũ đổi mới - Trợ giá đến 300.000đ",
-      "description": "Thu cũ đổi mới - Trợ giá đến 300.000đ",
-      "shortDesc": "Thu cũ đổi mới - Trợ giá đến 300.000đ",
-      "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659836426/anhhtus/uufvlxopa5s622cfjua1.png",
-      "categories": 1
-    },
-    {
       "id": 10,
-      "name": "Product E",
+      "name": "Product D",
       "originalPrice": 12345689,
-      "saleOffPrice": 12000000,
+      "saleOffPrice": 11990000,
       "feature": "Thu cũ đổi mới - Trợ giá đến 300.000đ",
       "description": "Thu cũ đổi mới - Trợ giá đến 300.000đ",
       "shortDesc": "Thu cũ đổi mới - Trợ giá đến 300.000đ",
       "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659836499/anhhtus/hs1mpjsws7ybbtftiakz.png",
-      "categories": 1
+      "categories": 5
     },
     {
       "id": 11,
-      "name": "product B",
+      "name": "product C",
       "originalPrice": 12356000,
       "saleOffPrice": 12000000,
       "feature": "Camera chất lượng, bắt trọn từng khoảng khắc - Cụm 4 camera với cảm biến chính lên đến 108 MP",
@@ -140,7 +129,5 @@
       "categories": 2
     }
   ],
-  "users": [
-    
-  ]
+  "users": []
 }

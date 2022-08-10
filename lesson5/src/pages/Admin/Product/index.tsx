@@ -13,8 +13,8 @@ const { Paragraph } = Typography;
 import type { ColumnsType } from "antd/es/table";
 import { ProductType } from "../../../types/product";
 import { CategoryType } from "../../../types/category";
-import { listCate, removeCate } from "../../../api/category";
-import { list } from "../../../api/product";
+import { listCate } from "../../../api/category";
+import { list, remove } from "../../../api/product";
 
 
 type ManagerProductProps = {
@@ -135,9 +135,9 @@ const ProductAdminPage = () => {
                         onClick={async () => {
                             const confirm = window.confirm("bạn có chắc muốn xóa");
                             if (confirm) {
-                                const { data } = await removeCate(text);
+                                const { data } = await remove(text);
                                 data &&
-                                    setDataTable(dataTable.filter((item) => item.id !== text));
+                                    setDataTable(dataTable.filter((item: any) => item.id !== text));
 
                                 console.log(text);
                             }

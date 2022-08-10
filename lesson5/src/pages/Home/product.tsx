@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 import Section from './section';
 
 type Props = {
-  data: ProductType[];
+
 };
 const ProductPage = (props: Props) => {
   const [data, setData] = useState<ProductType[]>([]);

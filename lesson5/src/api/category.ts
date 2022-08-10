@@ -18,7 +18,7 @@ export const updateCate = (category: any) => {
     const url = `/category/${category.id}`;
     return instance.put(url, category);
 }
-export const readCate = (id: number ) => {
+export const readCate = (id: string | undefined ) => {
     const url = `/category/${id}`;
     return instance.get(url);
 }

@@ -18,7 +18,7 @@ export const update = (product: any) => {
     const url = `/products/${product.id}`;
     return instance.put(url, product);
 }
-export const read = (id:number ) => {
+export const read = (id:string| undefined ) => {
     const url = `/products/${id}`;
     return instance.get(url);
 }
