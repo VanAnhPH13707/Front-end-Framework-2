@@ -54,12 +54,12 @@ const ProductAdminPage = () => {
             key: "name",
             render: (text) => <a>{text}</a>,
         },
-        // {
-        //   title: "Đặc điểm",
-        //   dataIndex: "feature",
-        //   key: "feature",
-        //   render: (text) => <a>{text}</a>,
-        // },
+        {
+          title: "Đặc điểm",
+          dataIndex: "feature",
+          key: "feature",
+          render: (text) => <a>{text}</a>,
+        },
         {
             title: "Giá khuyến mãi",
             dataIndex: "saleOffPrice",

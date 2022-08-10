@@ -1,127 +1,3 @@
-// import { ShoppingCartOutlined } from "@ant-design/icons";
-// import { Button, Col, Row } from "antd";
-// import { Content } from "antd/lib/layout/layout";
-// import React, { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import styled from "styled-components";
-// import { read } from "../../api/product";
-// import Image1 from "../../assets/images/anh1.png";
-// import { ProductType } from "../../types/product";
-
-// type Props = {
-//   data: ProductType[];
-// };
-
-// const ProductDetail = (props: Props) => {
-//   const { id } = useParams();
-//   const [data, setData] = useState<ProductType[]>([]);
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const { data } = await read(id);
-//       setData(data);
-//     };
-//     fetchData();
-//   }, []);
-//   return (
-//     <>
-//       <Content>
-//         <Row style={{ height: '35px', padding: '5px 250px' }}>
-//           <h2>{data.name}</h2>
-//         </Row>
-//         <hr />
-//         <Row style={{ justifyContent: "center" }}>
-//           <Col span={8}>
-//             <ProImage src={data.image} alt="" />
-//           </Col>
-//           <Col span={8} style={{ textAlign: 'left', paddingTop: '20px' }}>
-//             <Row style={{ display: 'flex' }}>
-//               <p style={{ fontSize: '20px', color: '#D70018', fontWeight: 'bold' }}>{data.saleOffPrice}đ</p>
-//               <p style={{ paddingTop: '6px', paddingLeft: '30px', fontSize: '16px' }}>{data.originalPrice}đ</p>
-//             </Row>
-//             <Row>
-//               <p>{data.shortDesc}</p>
-//             </Row>
-//             <Row style={{ paddingTop: '200px' }}>
-//               <Button style={{ width: '200px', background: '#FF3945', border: '#FF3945', color: '#fff' }}>Mua ngay</Button>
-//               <ShoppingCartOutlined style={{ width: '40px', border: '1px solid #FF3945', paddingTop: '10px', color: '#FF3945', borderRadius: "5px", marginLeft: '20px', marginRight: '20px' }} />
-//               <p>Thêm vào giỏ hàng</p>
-//             </Row>
-//           </Col>
-//         </Row>
-//         <div>
-//           <div>Sản phẩm cùng loại</div>
-
-//         </div>
-
-
-//         {/* đặc điểm nổi bật */}
-//         <div>
-//           <Items3>
-//             <NameDD>Đặc điểm nổi bật</NameDD>
-//             <div>
-//               <SpanN>
-//                 {data.feature}
-//               </SpanN>{" "}
-//               <br />
-//               <SpanN>
-//                 {data.shortDesc}
-//               </SpanN>{" "}
-//               <br />
-//               <SpanN>
-//                 {data.description}
-//               </SpanN>{" "}
-//               <br />
-//             </div>
-//           </Items3>
-//         </div>
-
-
-//       </Content>
-//     </>
-//   );
-// };
-// const ProImage = styled.img`
-//     width:280px;
-//     padding-top: 20px;
-//     padding-bottom: 20px;
-// `
-
-// const PriceC = styled.div`
-//   font-size: 12px;
-//   margin-left: 10px;
-// `;
-// const Items2 = styled.div`
-//   display: flex;
-//   margin-top: 200px;
-// `;
-// const CartItems = styled.div`
-//   display: flex;
-// `;
-// const Buutoon = styled.button`
-//   padding: 5px 30px;
-//   color: white;
-//   font-size: 14px;
-//   background-color: #ff3945;
-// `;
-// const Items3 = styled.div`
-//   background-color: #f2f2f2;
-//   margin-top: 30px;
-//   margin-bottom: 20px;
-//   padding: 10px 0;
-// `;
-// const NameDD = styled.div`
-//   text-align: center;
-//   color: red;
-//   font-size: 18px;
-// `;
-// const SpanN = styled.span`
-//   padding-left: 20px;
-//   font-size: 14px;
-//   padding-bottom: 10px;
-//   padding-top: 10px;
-// `;
-// export default ProductDetail;
-
 
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Button, Col, message, Row } from "antd";
@@ -190,7 +66,7 @@ const ProductDetail = (props: Props) => {
             <p style={{ paddingTop: '6px', paddingLeft: '30px', fontSize: '16px' }}>{product.originalPrice}đ</p>
           </Row>
           <Row>
-            <p>{product.shortDesc}</p>
+            <p>{product.description}</p>
           </Row>
           <Row style={{ paddingTop: '200px' }} onClick={() => addToCart(product)}>
             <Button style={{ width: '200px', background: '#FF3945', border: '#FF3945', color: '#fff' }}>Mua ngay</Button>
@@ -204,7 +80,7 @@ const ProductDetail = (props: Props) => {
       </Row>
       <Row>
         {data &&
-          data.map((item: any, index: any) => {
+          data.map((item: any) => {
             return (
               <div>
                 <Col span={4} >
@@ -258,12 +134,7 @@ const ProductDetail = (props: Props) => {
     </Content>
   );
 };
-// const Container = styled.div`
-//   max-width: 1000px;
-//   margin: auto;
-//   margin-top: 20px;
-//   margin-bottom: 50px;
-// `;
+
 const ProImage = styled.img`
    width:280px;
    padding-top: 20px;

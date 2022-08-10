@@ -25,7 +25,7 @@ const Signup: React.FC = () => {
   const navigate = useNavigate();
   const onFinish = async (values: any) => {
     try {
-      const { data: user } = await signup(values);
+      const { data:user } = await signup(values);
       message.success("Đăng ký thành công");
       navigate("/signin");
     } catch (err) {
@@ -39,6 +39,7 @@ const Signup: React.FC = () => {
 
   return (
     <div>
+      
       <Container2>
         <Form
           initialValues={{}}
@@ -118,6 +119,7 @@ const Signup: React.FC = () => {
           </Container>
         </div>
       </Container2>
+      
     </div>
   );
 };

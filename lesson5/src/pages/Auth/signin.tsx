@@ -18,11 +18,11 @@ import Img2 from "../../assets/images/logo.png";
 import FaceboookT from "../../assets/images/Rectangle.png";
 import Google from "../../assets/images/Rectangle (1).png";
 import { signin } from "../../api/auth";
-import { authenticate} from "../../utils/localStorage";
+import { authenticate } from "../../utils/localStorage";
 const { TextArea } = Input;
 const { Option } = Select;
 
-const Login: React.FC = () => {
+const Signin: React.FC = () => {
   const navigate = useNavigate();
   const onFinish = async (values: any) => {
     try {
@@ -39,6 +39,7 @@ const Login: React.FC = () => {
   };
   return (
     <div>
+      
       <Container2>
         <Form
           initialValues={{}}
@@ -149,4 +150,4 @@ const ImagePreview = styled.img`
   width: 250px;
   height: 50%;
 `;
-export default Login;
+export default Signin;

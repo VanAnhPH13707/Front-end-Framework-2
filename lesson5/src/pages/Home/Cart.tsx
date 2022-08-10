@@ -4,23 +4,26 @@ import { InputNumber } from "antd";
 import cartSlice from "./cartSlice.js";
 import { LeftOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-const Cart = () => {
-  const {cart} = useSelector((store) => store);
+import Header from "../../components/Header";
+const CartPage = () => {
+  const { cart } = useSelector((store) => store);
   const dispatch = useDispatch()
-  const increase = (_id: string) => {
-    dispatch(cartSlice.actions.increase(_id))
+  const increase = (id: number) => {
+    dispatch(cartSlice.actions.increase(id))
   }
-  const decrease = (_id: string) => {
-    dispatch(cartSlice.actions.decrease(_id))
+  const decrease = (id: number) => {
+    dispatch(cartSlice.actions.decrease(id))
   }
-  const remove = (_id: string) => {
-    dispatch(cartSlice.actions.remove(_id))
+  const remove = (id: number) => {
+    dispatch(cartSlice.actions.remove(id))
   }
   return (
-    <div className="flex h-full flex-col bg-white shadow-xl w-1/3 m-auto">
+    <>
+    <Header/>
+    <div className="flex h-full flex-col bg-white shadow-xl w-1/3 m-auto ">
       <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
         <div className="flex items-center justify-start">
-          <Link to={`/`} className="flex items-center">
+          <Link to="/" className="flex items-center">
             <LeftOutlined />
             <p className="pt-2.5">Trở về</p>
           </Link>
@@ -55,7 +58,7 @@ const Cart = () => {
                             <button
                               type="button"
                               className="font-bold text-black-600 hover:text-indigo-500"
-                              onClick={() => remove(item._id)}
+                              onClick={() => remove(item.id)}
                             >
                               X
                             </button>
@@ -63,19 +66,19 @@ const Cart = () => {
                         </div>
                         <div className="flex items-center">
                           <p className="font-semibold text-rose-800">
-                            {(item.originalPrice - item.saleOffPrice).toLocaleString()} <u>đ</u>
+                            {(item.saleOffPrice).toLocaleString()} <u>đ</u>
                           </p>
                           <p className="ml-2 mt-1">{item.originalPrice.toLocaleString()} <u>đ</u></p>
                         </div>
                       </div>
                       <div className="flex text-sm">
                         <p className="mr-2">Chọn số lượng: </p>
-                        <div className="cart-item quantity">
-                          <button className="click-1" onClick={() => decrease(item._id)}>
+<div className="cart-item quantity">
+                          <button className="click-1" onClick={() => decrease(item.id)}>
                             -
                           </button>
                           <input disabled type="text" value={item.amount} />
-                          <button className="click-2" onClick={() => increase(item._id)}>
+                          <button className="click-2" onClick={() => increase(item.id)}>
                             +
                           </button>
                         </div>
@@ -101,7 +104,7 @@ const Cart = () => {
             href="#"
             className="flex items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-sm text-white shadow-sm hover:bg-red-500"
           >
-            TIẾN HÀNH ĐẶT HÀNG
+            Đặt hàng
           </a>
         </div>
         <div className="mt-2">
@@ -109,12 +112,13 @@ const Cart = () => {
             href="#"
             className="flex items-center justify-center rounded-md border border-transparent bg-neutral-50 px-6 py-3 text-sm text-red-600 shadow-sm hover:bg-neutral-100"
           >
-            CHỌN THÊM SẢN PHẨM KHÁC
+            Chọn thêm
           </a>
         </div>
       </div>
     </div>
+    </>
   );
 };
 
-export default Cart;
+export default CartPage;

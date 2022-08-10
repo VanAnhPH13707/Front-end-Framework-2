@@ -1,5 +1,4 @@
 {
-  "users":[],
   "category": [
     {
       "id": 1,
@@ -140,5 +139,8 @@
       "image": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1659893561/anhhtus/e7egtt3in9izgcchnptx.png",
       "categories": 2
     }
+  ],
+  "users": [
+    
   ]
 }

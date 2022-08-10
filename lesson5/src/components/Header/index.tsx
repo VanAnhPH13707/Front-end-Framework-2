@@ -7,12 +7,14 @@ import AutoComplete from "../Input/AutoComplete";
 import deliveryImage from "../../assets/images/delivery.png"
 import vectorImage from "../../assets/images/Vector.png"
 import cartImage from "../../assets/images/Cart.png"
+import { Link } from "react-router-dom";
 const Header = () => {
     return (
         <Wrapper>
             <Container>
-                
+            <Link to='/'>
             <Logo src={logoImage} alt="" />
+            </Link>
             <AutoComplete/>
             <Services>
                     <ServiceBtn
@@ -21,10 +23,13 @@ const Header = () => {
                     <ServiceBtn
                         image={deliveryImage}
                         title1="Cửa hàng gần bạn" />
+                    <Link to='/cart'>
                     <ServiceBtn
                         image={cartImage}
                         title1="Giỏ hàng" />
-                </Services>
+                    </Link>
+            </Services>
+                    
 
             </Container>
         </Wrapper>
