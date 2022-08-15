@@ -71,7 +71,7 @@ const CategoryAdminPage = () => {
           <Button onClick={async () => {
             const { data } = await removeCate(text);
             data &&
-              setDataTable(dataTable.filter((item) =>
+              setDataTable(dataTable.filter((item : any) =>
                 item.id !== text
               ))
 
