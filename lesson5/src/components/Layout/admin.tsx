@@ -24,7 +24,7 @@ const item3: MenuProps['items'] = [
 const AdminLayout: React.FC = () => (
   <Layout>
     <HeaderCustom>
-    <Link to ="/admin"><Logo src={LogoImage} /></Link>
+    <Link to ="/"><Logo src={LogoImage} /></Link>
       {/* <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} /> */}
       <Text>
         Dashboard

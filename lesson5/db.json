@@ -129,5 +129,12 @@
       "categories": 2
     }
   ],
-  "users": []
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$aYjAPkD8y5jgZn3d/gdgnuPnVWb07VVtaohfyFtlz8DQqmZs7lyL2",
+      "phone": "0975705356",
+      "id": 1
+    }
+  ]
 }

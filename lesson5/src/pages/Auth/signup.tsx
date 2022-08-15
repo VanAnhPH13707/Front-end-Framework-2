@@ -1,33 +1,20 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import {
-  Typography,
-  Col,
-  Row,
-  Button,
-  Checkbox,
-  Form,
-  Input,
-  InputNumber,
-  Select,
-  message,
-} from "antd";
+import { Typography, Col, Row, Button, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import Img2 from "../../assets/images/logo.png";
 import FaceboookT from "../../assets/images/Rectangle.png";
 import Google from "../../assets/images/Rectangle (1).png";
 import { signup } from "../../api/auth";
-const { TextArea } = Input;
-const { Option } = Select;
+import { authenticate } from "../../utils/localStorage";
 
 const Signup: React.FC = () => {
   const navigate = useNavigate();
   const onFinish = async (values: any) => {
     try {
-      const { data:user } = await signup(values);
+      const {data: user} = await signup(values);
       message.success("Đăng ký thành công");
-      navigate("/signin");
+      navigate('/signin')
     } catch (err) {
       message.error("Có lỗi xảy ra");
     }
@@ -39,95 +26,98 @@ const Signup: React.FC = () => {
 
   return (
     <div>
-      
       <Container2>
-        <Form
-          initialValues={{}}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          layout="vertical"
-        >
-          <Typography.Title level={2} style={{ margin: 0 }}>
-            ĐĂNG KÝ
-          </Typography.Title>
-          <Row>
-            <Col>
-              <Form.Item
-                name="email"
-                labelCol={{ span: 24 }}
-                label="Email"
-                rules={[{ required: true, message: "Email không được trống" }]}
-              >
-                <Input size="large" style={{ width: "400px" }} />
-              </Form.Item>
-
-              <Form.Item
-                name="Số điện thoại"
-                labelCol={{ span: 24 }}
-                label="Số điện thoại"
-                rules={[
-                  { required: true, message: "Số điện thoại không được trống" },
-                ]}
-              >
-                <InputNumber size="large" style={{ width: "400px" }} />
-              </Form.Item>
-
-              <Form.Item
-                name="password"
-                labelCol={{ span: 24 }}
-                label="Mật khẩu"
-                rules={[
-                  { required: true, message: "Mật khẩu không được trống" },
-                ]}
-              >
-                {/* <Input size="large" /> */}
-                <Input.Password size="large" />
-              </Form.Item>
-              {/*  */}
-              <Form.Item>
-                <a href="/signin">Bạn đã có tài khoản</a>
-              </Form.Item>
-
-              <Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  style={{ width: "400px" }}
-                >
-                  Đăng ký
-                </Button>
-              </Form.Item>
-              <ContainerT>
-                <span>Hoặc đăng nhập bằng</span>
-                <Facebook>
-                  <Items2>
-                    <Items src={FaceboookT} />
-                  </Items2>
-                  <div>
-                    <Items src={Google} />
-                  </div>
-                </Facebook>
-              </ContainerT>
-            </Col>
-          </Row>
-        </Form>
-        <div>
-          <Container>
-            <UploadWrapper>
-              <Img src={Img2} />
-            </UploadWrapper>
-          </Container>
-        </div>
+        <OutLog>
+          <OutForm>
+            <Form
+              initialValues={{}}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              layout="vertical"
+            >
+              <Typography.Title level={2} style={{ margin: 0 }}>
+                Đăng ký
+              </Typography.Title>
+              <Row>
+                <Col>
+                  <Form.Item
+                    name="email"
+                    labelCol={{ span: 24 }}
+                    label="Email"
+                    rules={[
+                      { required: true, type: 'email', message: "Email không hợp lệ" },
+                    ]}
+                  >
+                    <Input size="large" style={{ width: "300px" }} />
+                  </Form.Item>
+                  <Form.Item
+                    name="phone"
+                    labelCol={{ span: 24 }}
+                    label="Số điện thoại"
+                    rules={[
+                      { required: true, message: "Số điện thoại không được trống" },
+                    ]}
+                  >
+                    <Input size="large" style={{ width: "300px" }} />
+                  </Form.Item>
+                  <Form.Item
+                    name="password"
+                    labelCol={{ span: 24 }}
+                    label="Mật khẩu"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Mật khẩu không được trống",
+                      },
+                    ]}
+                  >
+                    <Input.Password size="large" />
+                  </Form.Item>
+                  <Form.Item>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      style={{ width: "300px", height: '40px' , backgroundColor: '#FF424E'}}
+                    >
+                      Đăng ký
+                    </Button>
+                  </Form.Item>
+                  <ContainerT>
+                    <span>Hoặc đăng nhập bằng</span>
+                    <Facebook>
+                      <Items2>
+                        <Items width={40} src={FaceboookT} />
+                      </Items2>
+                      <div>
+                        <Items width={40} src={Google} />
+                      </div>
+                    </Facebook>
+                  </ContainerT>
+                </Col>
+              </Row>
+            </Form>
+          </OutForm>
+          <UploadWrapper>
+            <Img src={Img2} />
+          </UploadWrapper>
+        </OutLog>
       </Container2>
-      
     </div>
   );
 };
 
 const ContainerT = styled.div`
-  /* width: 980px;
-  margin:  auto; */
   text-align: center;
+`;
+const OutLog = styled.div`
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+`;
+const OutForm = styled.div`
+  background-color: white;
+  padding: 30px 70px;
+  border-radius: 20px 0 0 20px;
 `;
 const Items2 = styled.div`
   margin-right: 20px;
@@ -142,12 +132,9 @@ const Facebook = styled.div`
 
 const Items = styled.img``;
 const Container2 = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  background-color: #e5e5e5;
+  min-height: 100vh;
 `;
-const Container = styled.div``;
 
 const UploadWrapper = styled.div`
   display: flex;
@@ -157,20 +144,11 @@ const UploadWrapper = styled.div`
   min-height: 100px;
   padding: 75px;
   background-color: #f8f8f8f8;
-  margin-left: 75px;
+  border-radius: 0 20px 20px 0;
 `;
 const Img = styled.img`
   padding-top: 70px;
   padding-bottom: 70px;
 `;
-const UploadIcon = styled.label`
-  input {
-    display: none;
-  }
-`;
 
-const ImagePreview = styled.img`
-  width: 250px;
-  height: 50%;
-`;
 export default Signup;
