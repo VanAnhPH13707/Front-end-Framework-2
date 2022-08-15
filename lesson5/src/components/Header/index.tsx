@@ -6,7 +6,7 @@ import AutoComplete from "../Input/AutoComplete";
 
 import deliveryImage from "../../assets/images/delivery.png"
 import vectorImage from "../../assets/images/Vector.png"
-import cartImage from "../../assets/images/Cart.png"
+import cartImage from "../../assets/images/cart.png"
 import { Link, NavLink } from "react-router-dom";
 import { message } from "antd";
 type Props = {};
